@@ -1,0 +1,10 @@
+# Django 4.2 LTS is pinned because XAMPP bundles MariaDB 10.4, which Django 5.x no longer accepts.
+Django>=4.2,<5.0
+djangorestframework>=3.15
+djangorestframework-simplejwt>=5.3
+django-cors-headers>=4.4
+PyMySQL>=1.1
+pypdf>=4.0
+requests>=2.31
+python-dotenv>=1.0
+Pillow>=10.0
