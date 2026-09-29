@@ -1,12 +1,100 @@
-import * as React from "react";
-import { cn } from "@/lib/utils";
+import * as React from "react"
+import { cn } from "@/lib/utils"
 
-export const Card = React.forwardRef(({ className, ...p }, ref) => (
-  <div ref={ref} className={cn("rounded-2xl border bg-card text-card-foreground shadow-sm", className)} {...p} />
-));
-Card.displayName = "Card";
-export const CardHeader = ({ className, ...p }) => <div className={cn("flex flex-col gap-1 p-5 pb-3", className)} {...p} />;
-export const CardTitle = ({ className, ...p }) => <h3 className={cn("text-base font-semibold leading-tight tracking-tight", className)} {...p} />;
-export const CardDescription = ({ className, ...p }) => <p className={cn("text-sm text-muted-foreground", className)} {...p} />;
-export const CardContent = ({ className, ...p }) => <div className={cn("p-5 pt-0", className)} {...p} />;
-export const CardFooter = ({ className, ...p }) => <div className={cn("flex items-center p-5 pt-0", className)} {...p} />;
+function Card({
+  className,
+  ...props
+}) {
+  return (
+    <div
+      data-slot="card"
+      className={cn(
+        "flex flex-col gap-6 rounded-xl border bg-card py-6 text-card-foreground shadow-sm",
+        className
+      )}
+      {...props} />
+  );
+}
+
+function CardHeader({
+  className,
+  ...props
+}) {
+  return (
+    <div
+      data-slot="card-header"
+      className={cn(
+        "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6",
+        className
+      )}
+      {...props} />
+  );
+}
+
+function CardTitle({
+  className,
+  ...props
+}) {
+  return (
+    <div
+      data-slot="card-title"
+      className={cn("leading-none font-semibold", className)}
+      {...props} />
+  );
+}
+
+function CardDescription({
+  className,
+  ...props
+}) {
+  return (
+    <div
+      data-slot="card-description"
+      className={cn("text-sm text-muted-foreground", className)}
+      {...props} />
+  );
+}
+
+function CardAction({
+  className,
+  ...props
+}) {
+  return (
+    <div
+      data-slot="card-action"
+      className={cn(
+        "col-start-2 row-span-2 row-start-1 self-start justify-self-end",
+        className
+      )}
+      {...props} />
+  );
+}
+
+function CardContent({
+  className,
+  ...props
+}) {
+  return (<div data-slot="card-content" className={cn("px-6", className)} {...props} />);
+}
+
+function CardFooter({
+  className,
+  ...props
+}) {
+  return (
+    <div
+      data-slot="card-footer"
+      className={cn("flex items-center px-6 [.border-t]:pt-6", className)}
+      {...props} />
+  );
+}
+
+export {
+  Card,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+  CardAction,
+  CardDescription,
+  CardContent,
+}
